@@ -1,0 +1,205 @@
+.deck {
+  transition: all 1s;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-wrap: wrap;
+
+  &.shuffled{
+    align-items: center;
+    justify-content: center;
+    .card{
+      background: transparent;
+      &.flipped{
+        position: unset;
+        margin: -2em 100px 0 100px;
+        z-index: 9;
+      
+        figure{
+          &.front{
+            background: white;
+            transition: all 1s;
+            transform: rotateY(180deg) translate(0, -150px);
+            .detail{
+              background: white;
+              padding: 1em;
+              max-height: 175px;
+              overflow-y: auto;
+              width: 325px;
+              margin-left: -98px;
+              border-radius: 10px;
+              opacity: 1;
+              &::-webkit-scrollbar {
+                width: 2px;
+                height: 2px;
+              }
+              &::-webkit-scrollbar-button {
+                width: 0px;
+                height: 0px;
+              }
+              &::-webkit-scrollbar-thumb {
+                background: #e1e1e1;
+                border: 0px none #ffffff;
+                border-radius: 50px;
+              }
+              &::-webkit-scrollbar-thumb:hover {
+                background: #ffffff;
+              }
+              &::-webkit-scrollbar-thumb:active {
+                background: #000000;
+              }
+              &::-webkit-scrollbar-track {
+                background: #666666;
+                border: 0px none #ffffff;
+                border-radius: 50px;
+              }
+              &::-webkit-scrollbar-track:hover {
+                background: #666666;
+              }
+              &::-webkit-scrollbar-track:active {
+                background: #333333;
+              }
+              &::-webkit-scrollbar-corner {
+                background: transparent;
+              }
+            }
+          }
+        }
+      }
+
+      figure{
+        &.back{
+          transform: rotateY(0);
+        }
+
+        &.front{
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+
+
+  &.shuffling{
+    transition: all 1s;
+    align-items: center;
+    justify-content: center;
+
+    &:before{
+      content: "Embaralhando...";
+      position: relative;
+      top: 252px;
+      color: white;
+      font-size: 25px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .card{
+      transition: all 1s;
+      position: absolute;
+
+      &:nth-child(1){
+        animation: shake 1.5s infinite;
+      }
+
+      &:nth-child(2){
+        animation: shaker 1.5s infinite;
+        animation-delay: .75s;
+      }
+
+      figure{
+        &.back{
+          transform: rotateY(0);
+        }
+
+        &.front{
+          transform: rotateY(180deg);
+          .detail{
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .card {
+    transition: all 1s;
+    width: 162px;
+    height: 309px;
+    margin: 1em;
+    border-radius: 10px;
+    background: white;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  
+    &.flipped {
+      transform: rotateY(-180deg);
+    }
+    figure {
+      margin: 0;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      //box-shadow: 0 0 50px #4a4e69;
+      border-radius: 5px;
+      &.back {
+        transform: rotateY(180deg);
+      }
+      &.front{
+        .detail{
+          opacity: 0;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+
+.shuffleEffect{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 2%;
+  background: #5ec544;
+  border: 0;
+  color: white;
+  padding: 1em 2em;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 11;
+}
+
+@keyframes shake {
+  0%{
+    transform: translate(0, 0) rotate(0);
+  }
+  50%{
+    transform: translate(219px, -25px) rotate(15deg);
+  }
+  100%{
+    transform: translate(0, 0) rotate(0);
+    z-index: 9;
+  }
+}
+
+@keyframes shaker {
+  0%{
+    transform: translate(0, 0) rotate(0);
+  }
+  50%{
+    transform: translate(-219px, -25px) rotate(-15deg);
+  }
+  100%{
+    transform: translate(0, 0) rotate(0);
+    z-index: 9;
+  }
+}

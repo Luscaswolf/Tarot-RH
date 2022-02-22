@@ -1,0 +1,24 @@
+<div *ngIf="allCards" class="deck" #deckCards>
+    <div class="card" *ngFor="let card of allCards" (click)="toggleCard($event)">
+       
+        <figure class="front">
+            <img src="{{ imageUrl + card.image}}" alt="{{ card.name }}">
+            <div class="detail">
+                <p class="name">
+                    {{ card.name }}
+                </p>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam corrupti culpa modi, iusto pariatur ipsum delectus nostrum quasi, rerum voluptatum dicta? Aspernatur eos nihil molestias labore dicta? Recusandae, nihil nulla.
+                </p>
+            </div>
+        </figure>
+        <figure class="back">
+            <img src="{{ imageUrlBack }}" alt="{{ card.name }}">
+        </figure>
+        
+    </div>
+    
+</div>
+<div class="action">
+    <button class="shuffleEffect" type="button" (click)="shuffleCards()">Random</button>
+</div> 
